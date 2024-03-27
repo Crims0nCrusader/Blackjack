@@ -31,6 +31,8 @@ public class BlackJack {
         dealer.add(deck.getCard());
         player.add(deck.getCard());
         dealer.add(deck.getCard());
+        playerValue();
+        dealerValue();
 
 
             System.out.println("Player Hand");
@@ -42,11 +44,9 @@ public class BlackJack {
                 System.out.println(dealer.get(i) + " ");
             }
             System.out.println("[?]");
-
+            playerValue();
+            dealerValue();
             hitNStay();
-
-
-
 
         //while(response.equals("hit")) {...}
         //do{...}while(logic);
@@ -62,25 +62,29 @@ public class BlackJack {
         // calcHandValue()
     }
 
-    public void dealerVal() {
-        for(int i = 0; i > dealer.size(); i++) {
+    public void dealerValue() {
+        dealerVal = 0;
+        for(int i = 0; i < dealer.size(); i++) {
             dealerVal += dealer.get(i).getValue();
         }
     }
 
-    public void playerVal() {
-        for(int i = 0; i > player.size(); i++) {
-            playerVal += player.get(i).getValue();
+    public void playerValue() {
+        playerVal = 0;
+        for(int b = 0; b < player.size(); b++) {
+            playerVal += player.get(b).getValue();
         }
     }
 
     private void hitNStay() {
+        playerValue();
+        dealerValue();
         System.out.println();
         System.out.println("hit or stay?");
 
-
         switch(kb.nextLine()) {
             case "hit":
+
 
                 if(dealerVal < 17) {
                     dealer.add(deck.getCard());
@@ -114,10 +118,9 @@ public class BlackJack {
                     System.out.println("Free money for us");
                     break;
                 }
-                else {
-                    System.out.println("sdirujgberoijgrebajigenrujpihbn");
-                    hitNStay();
-                }
+
+                hitNStay();
+                break;
 
             case "stay":
 
@@ -143,10 +146,8 @@ public class BlackJack {
                     System.out.println("You Lose!");
                     break;
                 }
-                else {
-                    System.out.println("spdoiugnrjopgn zdrjkiolg 4arhiopugbarepihujb ");
-                    hitNStay();
-                }
+
+                break;
                 //reveal dealer hand & determine whether win or lose
             default:
 
